@@ -1,18 +1,18 @@
 %define upstream_name    String-Tokenizer
 %define upstream_version 0.05
 
-Name:       perl-%{upstream_name}
-Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 1
+Name:		perl-%{upstream_name}
+Version:	%perl_convert_version %{upstream_version}
+Release:	2
 
-Summary:    A simple string tokenizer
-License:    GPL+ or Artistic
-Group:      Development/Perl
-Url:        http://search.cpan.org/dist/%{upstream_name}
-Source0:    http://www.cpan.org/modules/by-module/String/%{upstream_name}-%{upstream_version}.tar.gz
+Summary:	A simple string tokenizer
+License:	GPL+ or Artistic
+Group:		Development/Perl
+Url:		http://search.cpan.org/dist/%{upstream_name}
+Source0:	http://www.cpan.org/modules/by-module/String/%{upstream_name}-%{upstream_version}.tar.gz
 
-BuildArch: noarch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
+BuildRequires:	perl-devel
+BuildArch:	noarch
 
 %description
 A simple string tokenizer which takes a string and splits it on whitespace.
@@ -35,22 +35,35 @@ these two steps are combined, but not here.
 %setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
+perl Makefile.PL INSTALLDIRS=vendor
 %make
 
 %check
 make test
 
 %install
-rm -rf %buildroot
 %makeinstall_std
 
-%clean
-rm -rf %buildroot
-
 %files
-%defattr(-,root,root)
 %doc Changes README
 %{_mandir}/man3/*
-%perl_vendorlib/String
+%{perl_vendorlib}/String
+
+%changelog
+* Tue Jul 28 2009 Jérôme Quelin <jquelin@mandriva.org> 0.50.0-1mdv2010.0
++ Revision: 401608
+- rebuild using %%perl_convert_version
+- fixed license field
+
+* Fri May 15 2009 Jérôme Quelin <jquelin@mandriva.org> 0.05-2mdv2010.0
++ Revision: 375900
+- rebuild
+
+* Sat Mar 14 2009 Guillaume Rousse <guillomovitch@mandriva.org> 0.05-1mdv2009.1
++ Revision: 355029
+- import perl-String-Tokenizer
+
+
+* Sat Mar 14 2009 cpan2dist 0.05-1mdv
+- initial mdv release, generated with cpan2dist
 
