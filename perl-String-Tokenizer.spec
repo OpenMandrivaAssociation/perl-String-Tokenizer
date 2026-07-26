@@ -1,15 +1,13 @@
 %define upstream_name    String-Tokenizer
-%define upstream_version 0.05
-
 Name:		perl-%{upstream_name}
-Version:	%perl_convert_version %{upstream_version}
-Release:	4
+Version:	0.05
+Release:	5
 
 Summary:	A simple string tokenizer
 License:	GPL+ or Artistic
 Group:		Development/Perl
-Url:		https://search.cpan.org/dist/%{upstream_name}
-Source0:	http://www.cpan.org/modules/by-module/String/%{upstream_name}-%{upstream_version}.tar.gz
+Url:		https://metacpan.org/dist/%{upstream_name}
+Source0:	http://www.cpan.org/modules/by-module/String/%{upstream_name}-%{version}.tar.gz
 
 BuildRequires:	make
 BuildRequires:	perl-devel
@@ -33,7 +31,7 @@ into specific chunks, a lexical analyzer classifies those chunks. Sometimes
 these two steps are combined, but not here.
 
 %prep
-%setup -q -n %{upstream_name}-%{upstream_version}
+%setup -q -n %{upstream_name}-%{version}
 
 %build
 perl Makefile.PL INSTALLDIRS=vendor
@@ -53,8 +51,7 @@ make test
 %changelog
 * Tue Jul 28 2009 Jérôme Quelin <jquelin@mandriva.org> 0.50.0-1mdv2010.0
 + Revision: 401608
-- rebuild using %%perl_convert_version
-- fixed license field
+- rebuild using %0.05 fixed license field
 
 * Fri May 15 2009 Jérôme Quelin <jquelin@mandriva.org> 0.05-2mdv2010.0
 + Revision: 375900
